@@ -100,18 +100,17 @@ $(function(){
     $(this).closest('.search-container').hide();
   })
 
+  //click movie to display plot
+  $('.movies').on('click','ul',function(){
+    $(this).find('.movie-info').toggle();
+    $(this).find('.movie-plot').toggle();
+  })
+
  //log moviesArray for testing purposes by clicking on header
   $('.header h1').on('click',function() {
    for (var i = 0; i < moviesArray.length; i++) {
      console.log(moviesArray[i].title);
    }
   })
-
-  $('.movies').on('click','ul',function(){
-    $(this).find('.movie-info').toggle();
-    $(this).find('.movie-plot').toggle();
-
-  })
-
 
 });

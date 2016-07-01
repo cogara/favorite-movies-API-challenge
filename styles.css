@@ -8,9 +8,75 @@ body {
   background-color: rgba(0,0,255,.3);
 }
 
+
+
+.header {
+  background-color: black;
+  color: white;
+  height: 150px;
+  padding: 15px;
+  text-align: center;
+}
+
+.header h1 {
+  margin: 15px 0 15px;
+}
+
+.search input, .search button {
+  padding: 5px 5px;
+  border-radius: 5px;
+}
+
+.container {
+  width: 90%;
+  margin: 30px auto;
+}
+
+.movies, .search-results {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-around;
+}
+
 img {
   height: 300px;
   max-width: 200px;
+}
+
+
+.movies ul, .search-results ul, img {
+  border-radius: 5px;
+  border: 1px solid rgba(0,0,0,.1);
+  box-shadow: 1px 1px 0px 0px rgba(0,0,0,.1);
+}
+
+.movies ul, .search-results ul {
+  flex: 1 150px;
+  max-width: 300px;
+  margin: 5px;
+  padding: 5px;
+  text-align: center;
+  background-color: rgba(100,100,100,.2);
+}
+
+.movies li {
+  list-style: none;
+  text-align: center;
+}
+
+.key {
+  display: block;
+  width: 100%;
+  margin: 5px 0 5px 0;
+  font-weight: bold;
+  padding: 3px;
+  background-color: rgba(255,255,255,.2);
+  border-radius: 5px;
+  font-size: 1.1em;
+}
+
+.movie-plot {
+  display: none;
 }
 
 .search-container {
@@ -33,72 +99,16 @@ img {
   border: 2px solid rgba(100,100,100,.5);
 }
 
-.movies ul, .search-results ul, img {
-  border-radius: 5px;
-  border: 1px solid rgba(0,0,0,.1);
-  box-shadow: 1px 1px 0px 0px rgba(0,0,0,.1);
-}
-
 .search-results ul {
   height: 400px;
 }
 
-.container {
-  width: 90%;
-  margin: 30px auto;
-}
-
-.movies, .search-results {
-  display: flex;
-  flex-flow: wrap;
-  justify-content: space-around;
-}
-
-.header {
-  background-color: black;
-  color: white;
-  height: 150px;
-  padding: 15px;
-  text-align: center;
-}
-
-.header h1 {
-  margin: 15px 0 15px;
-}
-
-.movies ul, .search-results ul {
-  flex: 1 150px;
-  max-width: 300px;
-  margin: 5px;
-  padding: 5px;
-  text-align: center;
-  background-color: rgba(100,100,100,.2);
-}
-
-.movies li {
-  list-style: none;
-  text-align: center;
-}
-
-.search input, .search button {
-  padding: 5px 5px;
-  border-radius: 5px;
-}
 
 .search-results-list li {
   list-style: none;
 }
 
-.key {
-  display: block;
-  width: 100%;
-  margin: 5px 0 5px 0;
-  font-weight: bold;
-  padding: 3px;
-  background-color: rgba(255,255,255,.2);
-  border-radius: 5px;
-  font-size: 1.1em;
-}
+
 
 .search-results .key {
   background-color: rgba(255,255,255,.4);
@@ -127,8 +137,4 @@ button {
   border: 1px solid rgba(0,0,0,.5);
   background-image: linear-gradient(rgb(255,255,255) 65%, rgba(0,0,0,.5));
   outline: none;
-}
-
-.movie-plot {
-  display: none;
 }
