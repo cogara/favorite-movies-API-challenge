@@ -6,7 +6,7 @@ $(function(){
   var shawshankRedemption = {};
   var moviesArray = [];
 
-  //assign key/value pairs to pre-assigned movie to display in list
+  //assign key/value pairs to specified object from API JSON
   function assignData(object, url) {
     $.get(url).then(function(data) {
       object.poster = data.Poster;
@@ -15,17 +15,19 @@ $(function(){
       object.year = data.Year;
       object.duration = data.Runtime;
       object.rating = data.imdbRating;
-      object.imdbID = data.imdbID;
+      object.id = data.imdbID;
 
       moviesArray.push(object);
-      $('.movies').append('<ul class="' + object.imdbID + '"></ul>');
-      $('.' + object.imdbID).append('<li><img src="' + object.poster + '"</li>');
-      $('.' + object.imdbID).append('<li class="movie-title"> <span class="key">Title</span><br /> ' + object.title + '</li>');
-      $('.' + object.imdbID).append('<li class="movie-genre"> <span class="key">Genre</span><br /> ' + object.genre + '</li>');
-      $('.' + object.imdbID).append('<li class="movie-year"> <span class="key">Year</span><br /> ' + object.year + '</li>');
-      $('.' + object.imdbID).append('<li class="movie-duration"> <span class="key">Runtime</span><br /> ' + object.duration + '</li>');
-      $('.' + object.imdbID).append('<li class="movie-rating"> <span class="key">Rating</span><br /> ' + object.rating + '</li>');
-      }, function() {
+      //checks if movie already exists, if not creates new DOM element. Otherwise does nothing
+      if ($('.movies').find('.'+object.id).length === 0) {
+      $('.movies').append('<ul class="' + object.id + '"></ul>');
+      $('.' + object.id).append('<li><img src="' + object.poster + '"</li>');
+      $('.' + object.id).append('<li class="movie-title"> <span class="key">Title</span><br /> ' + object.title + '</li>');
+      $('.' + object.id).append('<li class="movie-genre"> <span class="key">Genre</span><br /> ' + object.genre + '</li>');
+      $('.' + object.id).append('<li class="movie-year"> <span class="key">Year</span><br /> ' + object.year + '</li>');
+      $('.' + object.id).append('<li class="movie-duration"> <span class="key">Runtime</span><br /> ' + object.duration + '</li>');
+      $('.' + object.id).append('<li class="movie-rating"> <span class="key">Rating</span><br /> ' + object.rating + '</li>');
+    }else{console.log('already added');}}, function() {
         console.log('fail');
       });
 
@@ -36,7 +38,6 @@ $(function(){
    var tempSearchArray = [];
    $.get(url).then(function(data) {
      var searchResult = data.Search;
-     console.log(searchResult);
      if (searchResult === undefined) {
        $('.search-results').append('<div class="search-error">Uh oh! Something went wrong with the search. Please recheck the title and try again!');
        return;
@@ -46,7 +47,7 @@ $(function(){
        tempSearchArray[i].poster = searchResult[i].Poster;
        tempSearchArray[i].title = searchResult[i].Title;
        tempSearchArray[i].id = searchResult[i].imdbID;
-       $('.search-results').append('<span id="http://www.omdbapi.com/?t=' + tempSearchArray[i].title.split(' ').join('%20') + '&y=&plot=short&r=json"><ul class="search-results-list" id="' + tempSearchArray[i].id + '"></ul></span>')
+       $('.search-results').append('<ul class="search-results-list" id="' + tempSearchArray[i].id + '"></ul>')
        $('#'+tempSearchArray[i].id).append('<li><img src="' + tempSearchArray[i].poster + '" alt="' + tempSearchArray[i].title + ' Poster"/></li>');
        $('#'+tempSearchArray[i].id).append('<li><span class="key">Title</span>' + tempSearchArray[i].title + '</li>');
      }
@@ -58,7 +59,7 @@ $(function(){
   //search function to query API, called in search even listeners
   function getSearch() {
     var searchReq = $('#search').val();
-    $('.search-results').find('span').remove();
+    $('.search-results').find('ul').remove();
     $('.search-results').find('.search-error').remove();
     $('.search-container').show();
     searchMovie('http://www.omdbapi.com/?s='+searchReq);
@@ -81,10 +82,9 @@ $(function(){
   });
 
   //add movies from search to movies list by clicking
-  $('.search-results').on('click','span',function() {
+  $('.search-results').on('click','ul',function() {
     var newMovie = {};
-    console.log(newMovie);
-    assignData(newMovie, $(this).attr('id'));
+    assignData(newMovie, 'http://www.omdbapi.com/?i=' + $(this).attr('id'));
   })
 
   //close search pop-up window
@@ -98,5 +98,6 @@ $(function(){
      console.log(moviesArray[i].title);
    }
   })
+
 
 });
