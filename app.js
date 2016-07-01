@@ -17,17 +17,22 @@ $(function(){
       object.duration = data.Runtime;
       object.rating = data.imdbRating;
       object.id = data.imdbID;
+      object.plot = data.Plot;
 
       moviesArray.push(object);
       //checks if movie already exists, if not creates new DOM element. Otherwise does nothing
       if ($('.movies').find('.'+object.id).length === 0) {
       $('.movies').append('<ul class="' + object.id + '"></ul>');
       $('.' + object.id).append('<li><img src="' + object.poster + '"</li>');
-      $('.' + object.id).append('<li class="movie-title"> <span class="key">Title</span><br /> ' + object.title + '</li>');
-      $('.' + object.id).append('<li class="movie-genre"> <span class="key">Genre</span><br /> ' + object.genre + '</li>');
-      $('.' + object.id).append('<li class="movie-year"> <span class="key">Year</span><br /> ' + object.year + '</li>');
-      $('.' + object.id).append('<li class="movie-duration"> <span class="key">Runtime</span><br /> ' + object.duration + '</li>');
-      $('.' + object.id).append('<li class="movie-rating"> <span class="key">Rating</span><br /> ' + object.rating + '</li>');
+      $('.' + object.id).append('<li class="movie-plot"><span class="key">Plot:</span>' + object.plot + '</li>');
+      $('.' + object.id).append('<span class="movie-info"></span>');
+      $('.' + object.id).find('.movie-info').append('<li class="movie-title"> <span class="key">Title</span>' + object.title + '</li>' +
+                                                    '<li class="movie-genre"> <span class="key">Genre</span>' + object.genre + '</li>' +
+                                                    '<li class="movie-year"> <span class="key">Year</span>' + object.year + '</li>' +
+                                                    '<li class="movie-duration"> <span class="key">Runtime</span>' + object.duration + '</li>' +
+                                                    '<li class="movie-rating"> <span class="key">Rating</span>' + object.rating + '</li>'
+                                                  );
+
     }else{console.log('already added');}}, function() {
         console.log('fail');
       });
@@ -72,7 +77,7 @@ $(function(){
   assignData(officeSpace, 'http://www.omdbapi.com/?t=office+space&y=&plot=short&r=json');
   assignData(superTroopers, 'http://www.omdbapi.com/?t=super+troopers&y=&plot=short&r=json');
 
-  
+
 
   //search API for movie in search box by click or enter
   $('.search').on('click','button',function(){
@@ -100,6 +105,12 @@ $(function(){
    for (var i = 0; i < moviesArray.length; i++) {
      console.log(moviesArray[i].title);
    }
+  })
+
+  $('.movies').on('click','ul',function(){
+    $(this).find('.movie-info').toggle();
+    $(this).find('.movie-plot').toggle();
+
   })
 
 

@@ -78,12 +78,6 @@ img {
 .movies li {
   list-style: none;
   text-align: center;
-  margin: 2px;
-}
-
-.movies li:first-child {
-  text-align: center;
-  margin: 10px 0 20px;
 }
 
 .search input, .search button {
@@ -95,12 +89,10 @@ img {
   list-style: none;
 }
 
-
-
 .key {
-  display: inline-block;
+  display: block;
   width: 100%;
-  margin: 5px 0;
+  margin: 5px 0 5px 0;
   font-weight: bold;
   padding: 3px;
   background-color: rgba(255,255,255,.2);
@@ -119,7 +111,6 @@ img {
 }
 
 .close {
-  /*flex: 1 100%;*/
   width: 100%;
   height: 30px;
   margin: 10px 0;
@@ -127,7 +118,6 @@ img {
   position: fixed;
   top: 150px;
   left: 0;
-  /*background-color: white;*/
 }
 
 button {
@@ -137,4 +127,8 @@ button {
   border: 1px solid rgba(0,0,0,.5);
   background-image: linear-gradient(rgb(255,255,255) 65%, rgba(0,0,0,.5));
   outline: none;
+}
+
+.movie-plot {
+  display: none;
 }
