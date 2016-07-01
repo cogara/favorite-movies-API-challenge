@@ -4,6 +4,7 @@ $(function(){
   var officeSpace = {};
   var eternalSunshineOfTheSpotlessMind = {};
   var shawshankRedemption = {};
+  var testMovie = {};
   var moviesArray = [];
 
   //assign key/value pairs to specified object from API JSON
@@ -70,6 +71,8 @@ $(function(){
   assignData(eternalSunshineOfTheSpotlessMind, 'http://www.omdbapi.com/?t=eternal+sunshine&y=&plot=short&r=json');
   assignData(officeSpace, 'http://www.omdbapi.com/?t=office+space&y=&plot=short&r=json');
   assignData(superTroopers, 'http://www.omdbapi.com/?t=super+troopers&y=&plot=short&r=json');
+
+  
 
   //search API for movie in search box by click or enter
   $('.search').on('click','button',function(){
